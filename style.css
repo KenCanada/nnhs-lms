@@ -1,40 +1,48 @@
-#header{
-    width: 100%;
-    height: 650px;
-    background-image: url(../img/banner1.jpg);
-    background-size: cover;
-    background-position: center;
-    top: 0;
+@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+
+.top-arr{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-#header .toggler{
-    color: white;
+.top-arr i{
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-#header .navbar-trans{
-    background: none;
-    margin-bottom: 100px;
+.top-arr:hover{
+    background: rgba(0, 0, 0, 0.9);
 }
 
-#header a{
-    color: white;
-    font-family: 'Century Gothic';
-    font-size: 30px;
-    margin-right: 10px;
-}
-
-#header .inner-container hr{
-    border: 2px solid white;
-}
-
-#header .inner-heading{
-    font-family: 'Century Gothic';
-    font-size: 60px;
-}
-
-#header .inner-desc{
-    font-family: 'Century Gothic';
-    font-size: 30px;
+.top-arr:hover i{
+    color: #fff;
+    top: 5px;
 }
 
 #login-body{
@@ -55,12 +63,253 @@
     margin-top: -75px;
 }
 
-#login-body .btn-submit{
+#header{
+    width: 100%;
+    height: 650px;
+    background-image: url(../img/banner1.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    top: 0;
+}
+
+#header .overlay {
+    /* background-color: rgba(150, 40, 27, 0.4); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+#header .toggler{
+    color: white;
+}
+
+#header .navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+#header .navbar-toggler span {
+   display: block;
+   background-color: #444;
+   height: 3px;
+   width: 25px;
+   margin-top: 4px;
+   margin-bottom: 4px;
+   -webkit-transform: rotate(0deg);
+   -moz-transform: rotate(0deg);
+   -o-transform: rotate(0deg);
+   transform: rotate(0deg);
+   position: relative;
+   left: 0;
+   opacity: 1;
+}
+
+#header .navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+   -webkit-transition: transform .35s ease-in-out;
+   -moz-transition: transform .35s ease-in-out;
+   -o-transition: transform .35s ease-in-out;
+   transition: transform .35s ease-in-out;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(1) {
+    /* position: absolute; */
+    left: 12px;
+    top: 10px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    opacity: 0.9;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(2) {
+    height: 12px;
+    visibility: hidden;
+    background-color: transparent;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(3) {
+    /* position: absolute; */
+    left: 12px;
+    top: -13px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    opacity: 0.9;
+}
+
+#header .navbar-trans{
+    background: none;
+    position: fixed;
+    transition: .3s;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#header nav.black{
+    background: rgba(150, 40, 27, 0.8);
+    width: 100%;
+}
+
+#header .link.link-scroll{
+    color: white;
+}
+
+#header .link{
+    color: #C0392B;
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+#header .inner-container{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 200px;
+
+}
+
+#header .inner-container hr{
+    border: 2px solid white;
+}
+
+#header .inner-heading{
+    font-family: 'Century Gothic';
+    font-size: 60px;
+    text-shadow: -1px -1px 0 #fff,
+		          1px -1px 0 #fff,
+		         -1px 1px 0 #fff,
+		          1px 1px 0 #fff;
+}
+
+#header .inner-desc{
+    font-family: 'Anton';
+    font-size: 30px;
+    text-shadow: -1px -1px 0 #fff,
+		          1px -1px 0 #fff,
+		         -1px 1px 0 #fff,
+		          1px 1px 0 #fff;
+}
+
+#about{
+    margin-top: 100px;
+}
+
+#about .main-heading{
+    font-family: 'Century Gothic';
+    font-size: 50px;
+    text-align: center;
+}
+
+#about .desc{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+#developer{
+    margin-top: 150px;
+}
+
+#developer .dev-panel{
+    max-height: 400px;
+    margin-bottom: 150px;
+}
+
+#developer .dev-pic{
+    margin-top: -140px;
+}
+
+#developer .dev-desc{
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+#developer i{
+    color: #C0392B;
+    font-size: 40px;
+}
+
+#developer i:hover{
+    color: #96281B;
+    font-size: 40px;
+}
+
+#main-footer{
+    background-color: #C0392B;
+}
+
+#main-footer .cdate{
+    color: white;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+}
+
+#main-footer ul{
+    display: inline-block;
+    list-style-type: none;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#main-footer ul li a{
+    text-decoration: none;
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    padding: 20px;
+    color: white;
+}
+
+.center-panel{
+    border-left: 2px solid #96281B;
+    border-right: 2px solid #96281B;
+    height: 40%; 
+}
+
+.btn-outline-secondary{
+    color: #96281B;
+    width: 170px;
+    height: 60px;
+    font-family: 'Century Gothic';
+    font-size: 35px;
+    border: 2px solid #96281B;
+    padding: 0px;
+}
+
+.btn-submit{
     background-color: #C0392B;
     color: white;
 }
 
-#login-body .btn-submit:hover{
+.btn-submit:hover{
     background-color: #96281B;
+    color: white;
+}
+
+.btn-outline-secondary:hover{
+    background-color: #C0392B;
+    border: 2px solid #C0392B;
+    color: white;
+}
+
+@media only screen and (max-width: 991px) {
+    #header .navbar-trans{
+        background: none;
+        text-align: center;
+    }
+
+    .center-panel{
+        border-left: 0px solid #96281B;
+        border-right: 0px solid #96281B;
+        border-top: 2px solid #96281B;
+        border-bottom: 2px solid #96281B;
+        margin-top: 20px;
+    }
 }
 
