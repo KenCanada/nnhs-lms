@@ -9,7 +9,7 @@
     global $conn;
 
     if(isset($_SESSION['id'])){
-        if($_SESSION['usertype'] == 'student'){
+        if($_SESSION['usertype'] == 'teacher'){
             echo "<script>window.location.href='../denied.php';</script>";
         }
         else if($_SESSION['usertype'] == 'parent'){
@@ -18,6 +18,7 @@
         else{
             $userid = $_SESSION['id'];
             $profileimg = $_SESSION['profileimg'];
+            $enrollmentid = $_SESSION['enrollment_id'];
 
             $retrieveUserInfoQuery = "SELECT * FROM tbl_account WHERE userid='$userid'";
 
@@ -120,9 +121,7 @@
                                     Exam
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="exam-session.php?id=<?php echo $subjectidFromURL; ?>">Add Exam</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="exam-manage.php?id=<?php echo $subjectidFromURL; ?>">Manage Exam</a>
+                                    <a class="dropdown-item" href="#">Add Exam</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="../logout.php">Exam History</a>
                                 </div>

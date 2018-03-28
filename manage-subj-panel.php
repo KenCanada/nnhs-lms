@@ -9,7 +9,7 @@
     global $conn;
 
     if(isset($_SESSION['id'])){
-        if($_SESSION['usertype'] == 'student'){
+        if($_SESSION['usertype'] == 'teacher'){
             echo "<script>window.location.href='../denied.php';</script>";
         }
         else if($_SESSION['usertype'] == 'parent'){
@@ -18,6 +18,7 @@
         else{
             $userid = $_SESSION['id'];
             $profileimg = $_SESSION['profileimg'];
+            $enrollmentid = $_SESSION['enrollment_id'];
 
             $retrieveUserInfoQuery = "SELECT * FROM tbl_account WHERE userid='$userid'";
 
@@ -36,30 +37,38 @@
 <?php
     global $conn;
     
-    if(isset($_POST['saveSubject'])){
+    if(ISSET($_POST['enrollSubject'])){
+        $accesscode = mysqli_real_escape_string($conn, $_POST['accesscode']);
+        $datestamp = dateTimeFormat();
 
-        $subjectname = mysqli_real_escape_string($conn, $_POST['subjectname']);
-        $datetime = dateTimeFormat();
-        $subjectnamecode = substr($subjectname, 0, 3);
-        $accesscode = datee().$subjectnamecode.Timee();
-        
-        $existingSubjectQuery = "SELECT * FROM tbl_subject WHERE subjectname = '$subjectname' AND userid = '$userid'";
+        $accesscodeExistingQuery = "SELECT * FROM tbl_subject WHERE accesscode = '$accesscode' AND archivestatus = '0'";
+    
+        $resultAccesscode = mysqli_query($conn, $accesscodeExistingQuery);
 
-        $result = mysqli_query($conn, $existingSubjectQuery);
+        $resultCountAccesscode = mysqli_num_rows($resultAccesscode);
 
-        $subjectcount = mysqli_num_rows($result);
-
-        if($subjectcount > 0){
-            $_SESSION['errorMessage'] = "Subject already exists!";
+        if($resultCountAccesscode == 0){
+            $_SESSION['errorMessage'] = "Access code doesn't exists!";
         }
         else{
-            $insertSubjectQuery = "INSERT INTO `tbl_subject`(`subjectname`, `accesscode`, `datetime`, `archivestatus`, `subjectid`, `userid`, `datetimestamp`) VALUES ('$subjectname','$accesscode','$datetime', '0', md5('$accesscode'), '$userid', NOW())";
+            $alreadyEnrolledQuery = "SELECT * FROM tbl_enrollment WHERE accesscode = '$accesscode' AND enrollment_id_student = '$enrollmentid'";
 
-            if(mysqli_query($conn, $insertSubjectQuery)){
-                $_SESSION['successMessage'] = $subjectname." subject successfully added! ACCESS CODE: ".$accesscode;
+            $resultAlreadyEnrolled = mysqli_query($conn, $alreadyEnrolledQuery);
+
+            $resultCountAlreadyEnrolled = mysqli_num_rows($resultAlreadyEnrolled);
+
+            if($resultCountAlreadyEnrolled > 0){
+                $_SESSION['errorMessage'] = "Subject already enrolled!";
             }
             else{
-                $_SESSION['errorMessage'] = mysqli_error($conn);
+                $insertToEnrollment = "INSERT INTO `tbl_enrollment`(`enrollment_id_student`, `accesscode`, `datestamp`) VALUES ('$enrollmentid', '$accesscode', '$datestamp')";
+
+                if(mysqli_query($conn, $insertToEnrollment)){
+                    $_SESSION['successMessage'] = "Subject successfully enrolled!";
+                }
+                else{
+                    $_SESSION['errorMessage'] = mysqli_error($conn);
+                }
             }
         }
     }
@@ -107,7 +116,7 @@
             <div class="overlay">
             <nav class="navbar navbar-expand-lg p-0 navigation sticky-top">
                 <div class="container">
-                    <a href="teacher-panel.php" class="navbar-brand brand mt-3 mr-5">
+                    <a href="student-panel.php" class="navbar-brand brand mt-3 mr-5">
                         <img src="../img/nnhs-lms-logo.png" alt="" width="70px" class="mb-3">
                     </a>
 
@@ -118,6 +127,16 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item mr-5">
+                                <a href="manage-subj-panel.php" class="nav-link active link"><i class="fas fa-book" style="font-size: 20px;"></i>&nbsp;&nbsp;Subject</a>
+                            </li>
+
+                            <li class="nav-item mr-3">
+                                <a href="#" class="nav-link link"><i class="fas fa-archive" style="font-size: 20px;"></i>&nbsp;&nbsp;Repository</a>
+                            </li>
+                        </ul>
+
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item mr-3">
                                 <a href="#header" class="nav-link active link"><i class="far fa-comments"></i></a>
@@ -133,7 +152,6 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="#">Welcome <?php echo $fname.'!'; ?></a>
-                                    <a class="dropdown-item" href="#">Another action</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="../logout.php">Logout</a>
                                 </div>
@@ -155,8 +173,8 @@
                     <div class="col-md-9">
                         <div class="row">
                             <div class="col">
-                                <button type="button" class="btn btn-submit-small btn-lg btn-block" data-toggle="modal" data-target="#add-subject">
-                                    &plus; Add subject
+                                <button type="button" class="btn btn-submit-small btn-sm btn-block" data-toggle="modal" data-target="#enroll-subject">
+                                    &plus; Enroll subject
                                 </button>
                             </div>
                         </div>
@@ -165,21 +183,23 @@
                             <div class="col">
                                 <div class="card card-table mb-3" style="padding-left:0px; padding-right:0px;">
                                 <div class="card-header card-table-header">
-                                    <h1>Subject</h1>
+                                    <h1>Enrolled Subjects</h1>
                                 </div>
-                                    <div class="card-body">
+                                    <div class="card-body p-0">
                                         <div class="table-responsive">
                                             <table class="table table-striped text-center">
                                                 <thead>
                                                     <tr>
                                                         <th>Subject Name</th>
                                                         <th>Access Code</th>
-                                                        <th>Students Enrolled</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                             <?php
-                                                $retrieveSubjectsQuery = "SELECT * FROM tbl_subject WHERE archivestatus = '0' AND userid = '$userid' ORDER BY datetimestamp DESC";
+                                                $retrieveSubjectsQuery = "SELECT subjectname, S.accesscode, datetime, subjectid
+                                                                          FROM tbl_subject S JOIN tbl_enrollment E
+                                                                          ON S.accesscode = E.accesscode
+                                                                          WHERE archivestatus = 0 AND enrollment_id_student = 1";
 
                                                 $result = mysqli_query($conn, $retrieveSubjectsQuery);
 
@@ -259,11 +279,11 @@
         </section>
 
         <section id="add-subject-modal">
-            <div class="modal fade" id="add-subject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="enroll-subject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">&plus; Add subject</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">&plus; Enroll subject</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span class="x-button" aria-hidden="true">&times;</span>
                         </button>
@@ -273,21 +293,14 @@
                         <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="add-subject-form">
                             <div class="form-row mb-3">
                                 <div class="col">
-                                    <label for="subjectname">Subject name</label>
-                                    <input type="text" class="form-control" name="subjectname" id="subjname" placeholder="e.g. Mathematics" required>
+                                    <label for="accesscode">Access code</label>
+                                    <input type="text" class="form-control" name="accesscode" id="subjname" placeholder="e.g. 2099456filpm090" required>
                                 </div>
                             </div>
-
-                            <!-- <div class="form-row mb-3">
-                                <div class="col">
-                                    <label for="accesscode">Access code</label>
-                                    <input type="text" class="form-control" id="accesscode" placeholder="e.g. 12a34b" required>
-                                </div>
-                            </div> -->
                     </div>
 
                     <div class="modal-footer">
-                        <button type="submit" name="saveSubject" class="btn btn-success"><i class="far fa-check-circle"></i> Save changes</button>                      
+                        <button type="submit" name="enrollSubject" class="btn btn-success"><i class="far fa-check-circle"></i> Save changes</button>                      
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="far fa-times-circle"></i> Close</button>
                     </form>
                     </div>
