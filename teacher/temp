@@ -1,0 +1,84 @@
+<?php
+								$retrieveUserInfo = "SELECT * FROM tbl_account WHERE userid = '1'";
+
+								$resultUserInfo = mysqli_query($conn, $retrieveUserInfo);
+
+								while($DataRows = mysqli_fetch_assoc($resultUserInfo)){
+									$birthdate = $DataRows['birthdate'];
+									$age = $DataRows['age'];
+									$gender = $DataRows['gender'];
+									$profileimg = $DataRows['profileimg'];
+									$userid = $DataRows['userid'];
+							?>
+                                <form class="pt-3 pb-5 pl-4" action="profhomepage.php" method="POST" enctype="multipart/form-data">
+                                    <div class="col-md-6">
+                                        <div class="form-row mb-3">
+                                            <div class="col">
+                                                <label for="lbl_date_start">Profile Image</label>
+                                                <input type ="file" name="profileimg" class="form-control form-control-lg" placeholder="e.g. 18" required>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                        </div>
+                
+                                        <div class="form-row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="lbl_date_start">Age</label>
+                                                <input type ="text" name="age" class="form-control form-control-lg" placeholder="e.g. 18" required>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="lbl_date_start">Birthdate</label>
+                                                <input type ="date" name="birthdate" class="form-control form-control-lg" style="width: 50%;" required>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mb-3">
+                                            <div class="col-md-6">
+                                                <label for="lbl_date_start">Gender</label>
+                                                <select class="form-control" name="gender">
+											        <option>Male</option>
+											        <option>Female</option>
+										        </select>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="lbl_date_start">Contact No</label>
+                                                <input type ="text" name="contactnum" class="form-control form-control-lg" placeholder="e.g. 0912xxxxxxx" required>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row mb-3">
+                                            <div class="col">
+                                                <label for="lbl_date_start">Email</label>
+                                                <input type ="email" name="email" class="form-control form-control-lg" placeholder="e.g. 123myemail@gmail.com" required>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-row mb-3">
+                                            <div class="col">
+                                                <label for="lbl_date_start">Bio</label>
+                                                <textarea name="bio" class="form-control form-control-lg" placeholder="e.g. 123myemail@gmail.com" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Required field!
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <?php } ?>

@@ -1,0 +1,596 @@
+@import url('https://fonts.googleapis.com/css?family=Anton');
+@import url('https://fonts.googleapis.com/css?family=Shadows+Into+Light');
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300');
+
+body{
+    background-color: #F5F5F5;
+}
+
+.cont{
+    margin-top: -50px;
+}
+
+.btn-outline-secondary{
+    color: #96281B;
+    width: 170px;
+    height: 60px;
+    font-family: 'Century Gothic';
+    font-size: 35px;
+    border: 2px solid #96281B;
+    padding: 0px;
+}
+
+.btn-submit{
+    background-color: #C0392B;
+    color: white;
+    height: 60px;
+    font-family: 'Century Gothic';
+    font-size: 35px;
+    padding: 0px;
+}
+
+.btn-submit:hover{
+    background-color: #96281B;
+    color: white;
+}
+
+.btn-submit-small{
+    background-color: #C0392B;
+    color: white;
+    font-family: 'Century Gothic';
+    font-size: 25px;
+    padding: 0px;
+}
+
+.btn-submit-small:hover{
+    background-color: #96281B;
+    color: white;
+}
+
+.btn-outline-submit{
+    color: #C0392B;
+    font-family: 'Century Gothic';
+    border: 2px solid #96281B;
+}
+
+.btn-outline-submit:hover{
+    color: white;
+    background-color: #96281B;
+    font-family: 'Century Gothic';
+    border: 2px solid #96281B;
+}
+
+.btn-outline-secondary:hover{
+    background-color: #C0392B;
+    border: 2px solid #C0392B;
+    color: white;
+}
+
+.top-arr{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    width: 50px;
+    height: 50px;
+    display: block;
+    text-decoration: none;
+    -webkit-border-radius: 35px;
+    -moz-border-radius: 35px;
+    border-radius: 35px;
+    display: none;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.top-arr i{
+    color: #fff;
+    margin: 0;
+    position: relative;
+    left: 16px;
+    top: 13px;
+    font-size: 19px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.top-arr:hover{
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.top-arr:hover i{
+    color: #fff;
+    top: 5px;
+}
+
+.card-table{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.14);
+    border-radius: 10px;
+    color: rgba(0,0,0, 0.87);
+    background-color: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+thead{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+}
+
+tbody{
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+}
+
+.card-table-header{
+    background-color: #C0392B;
+}
+
+.card-table-header h1{
+    font-family: "Century Gothic";
+    text-transform: uppercase;
+    color: white;
+    font-size: 25px;
+
+}
+
+/*************************** LOGIN PAGE STYLE *********************************/
+
+#login-body{
+    background-image: url("../img/exam.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#login-body .login-panel{
+    width: 100%;
+    margin-top: 150px;
+    border-radius: 2%;
+    box-shadow: 5px 2px 100px 5px #000000;
+}
+
+#login-body .nnhs-logo{
+    width: 25%;
+    margin-top: -75px;
+}
+
+#login-body .signup-teacher-panel{
+    width: 100%;
+    margin-top: 35px;
+    border-radius: 2%;
+    box-shadow: 5px 2px 100px 5px #000000;
+}
+
+#login-body .back-link{
+    text-decoration: none;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    color: #C0392B;
+}
+
+#login-body .back-link:hover{
+    color: #96281B;
+}
+
+/*************************** LOGIN PAGE STYLE END *********************************/
+
+
+/*************************** HOME PAGE STYLE *********************************/
+
+#header{
+    width: 100%;
+    height: 650px;
+    background-image: url(../img/banner1.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    top: 0;
+}
+
+#header .overlay {
+    /* background-color: rgba(150, 40, 27, 0.4); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.toggler{
+    color: white;
+}
+
+#header .navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+#header .toggler-span.toggler-span-scroll{
+    display: block;
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    position: relative;
+    left: 0;
+    opacity: 1;
+ }
+
+#header .navbar-toggler span {
+   display: block;
+   background-color: #C0392B;
+   height: 3px;
+   width: 25px;
+   margin-top: 4px;
+   margin-bottom: 4px;
+   -webkit-transform: rotate(0deg);
+   -moz-transform: rotate(0deg);
+   -o-transform: rotate(0deg);
+   transform: rotate(0deg);
+   position: relative;
+   left: 0;
+   opacity: 1;
+}
+
+#header .navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+   -webkit-transition: transform .35s ease-in-out;
+   -moz-transition: transform .35s ease-in-out;
+   -o-transition: transform .35s ease-in-out;
+   transition: transform .35s ease-in-out;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(1) {
+    /* position: absolute; */
+    left: 0px;
+    top: 10px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    opacity: 0.9;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(2) {
+    height: 12px;
+    visibility: hidden;
+    background-color: transparent;
+}
+
+#header .navbar-toggler:not(.collapsed) span:nth-child(3) {
+    /* position: absolute; */
+    left: 0px;
+    top: -13px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    opacity: 0.9;
+}
+
+#header .navbar-trans{
+    background: none;
+    position: fixed;
+    transition: .3s;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#header nav.black{
+    background: rgba(150, 40, 27, 0.8);
+    width: 100%;
+}
+
+#header .link.link-scroll{
+    color: white;
+}
+
+#header .link{
+    color: #C0392B;
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+#header .inner-container{
+    position: relative;
+    margin: 0 auto;
+    margin-top: 200px;
+
+}
+
+#header .inner-container hr{
+    border: 2px solid white;
+}
+
+#header .inner-heading{
+    font-family: 'Century Gothic';
+    font-size: 60px;
+    text-shadow: -1px -1px 0 #fff,
+		          1px -1px 0 #fff,
+		         -1px 1px 0 #fff,
+		          1px 1px 0 #fff;
+}
+
+#header .inner-desc{
+    font-family: 'Anton';
+    font-size: 30px;
+    text-shadow: -1px -1px 0 #fff,
+		          1px -1px 0 #fff,
+		         -1px 1px 0 #fff,
+		          1px 1px 0 #fff;
+}
+
+#about{
+    margin-top: 100px;
+}
+
+#about .main-heading{
+    font-family: 'Century Gothic';
+    font-size: 50px;
+    text-align: center;
+}
+
+#about .desc{
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 30px;
+    text-align: center;
+}
+
+#developer{
+    margin-top: 150px;
+}
+
+#developer .dev-panel{
+    max-height: 400px;
+    margin-bottom: 150px;
+}
+
+#developer .dev-pic{
+    margin-top: -140px;
+}
+
+#developer .dev-desc{
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+#developer i{
+    color: #C0392B;
+    font-size: 40px;
+}
+
+#developer i:hover{
+    color: #96281B;
+    font-size: 40px;
+}
+
+#main-footer{
+    background-color: #C0392B;
+}
+
+#main-footer .cdate{
+    color: white;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+}
+
+#main-footer ul{
+    display: inline-block;
+    list-style-type: none;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+#main-footer ul li a{
+    text-decoration: none;
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    padding: 20px;
+    color: white;
+}
+
+.center-panel{
+    border-left: 2px solid #96281B;
+    border-right: 2px solid #96281B;
+    height: 40%; 
+}
+
+/*************************** HOME PAGE STYLE END *********************************/
+
+/*************************** TEACHER PANEL PAGE STYLE *********************************/
+
+#teacher-panel-header nav{
+    background-color: #C0392B;
+    margin-bottom: 50px;
+}
+
+#teacher-panel-header .p-brand{
+    display: inline-block;
+    font-family: 'Century Gothic';
+    font-size: 17px;
+    color: white;
+}
+
+#teacher-panel-header #navbarDropdown{
+    color: white;
+    font-size: 20px;
+}
+
+#teacher-panel-header .profile-img{
+    width: 50px;
+    border-radius: 50%;
+    margin-top: -11px;
+}
+
+#teacher-panel-header .dropdown-item:hover{
+    background-color: #96281B;
+    color: white;
+    transition: .3s;
+}
+
+
+#teacher-panel-header .navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+#teacher-panel-header .navbar-toggler span {
+   display: block;
+   background-color: #ffffff;
+   height: 3px;
+   width: 25px;
+   margin-top: 4px;
+   margin-bottom: 4px;
+   -webkit-transform: rotate(0deg);
+   -moz-transform: rotate(0deg);
+   -o-transform: rotate(0deg);
+   transform: rotate(0deg);
+   position: relative;
+   left: 0;
+   opacity: 1;
+}
+
+#teacher-panel-header .navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+   -webkit-transition: transform .35s ease-in-out;
+   -moz-transition: transform .35s ease-in-out;
+   -o-transition: transform .35s ease-in-out;
+   transition: transform .35s ease-in-out;
+}
+
+#teacher-panel-header .navbar-toggler:not(.collapsed) span:nth-child(1) {
+    /* position: absolute; */
+    left: 0px;
+    top: 10px;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    opacity: 0.9;
+}
+
+#teacher-panel-header .navbar-toggler:not(.collapsed) span:nth-child(2) {
+    height: 12px;
+    visibility: hidden;
+    background-color: transparent;
+}
+
+#teacher-panel-header .navbar-toggler:not(.collapsed) span:nth-child(3) {
+    /* position: absolute; */
+    left: 0px;
+    top: -13px;
+    -webkit-transform: rotate(-135deg);
+    -moz-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    opacity: 0.9;
+}
+
+#teacher-panel-header .link{
+    color: white;
+    font-size: 20px;
+    font-family: 'Century Gothic';
+}
+
+#teacher-panel-header i{
+    color: white;
+    font-size: 30px;
+}
+
+#manage-subj-menu .count-title{
+    font-family: 'Anton';
+    font-size: 20px;
+}
+
+#manage-subj-menu .count-lbl{
+    font-family: 'Century Gothic';
+    font-size: 40px;
+}
+
+#add-subject-modal .modal-header{
+    background-color: #C0392B;
+    color: white;
+    font-family: 'Century Gothic';
+}
+
+#add-subject-modal .x-button{
+    color: white;
+}
+
+#subject-info-panel .subject-name-heading{
+    color: #000;
+    font-family: 'Raleway', sans-serif;
+    font-size: 45px;
+}
+
+#subject-info-panel .btn-updates{
+    background-color: transparent;
+    color: #C0392B;
+    border: none;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+}
+
+#subject-info-panel .btn-updates:hover{
+    border-bottom: 2px #C0392B solid;
+    transition: .5s;
+}
+
+#subject-info-panel .card-question{
+    padding: 25px;
+    margin-bottom: 15px;
+}
+
+#subject-info-panel .question-text{
+    font-family: "Raleway";
+    font-size: 20px;
+}
+
+#subject-info-panel .choice-text{
+    font-family: "Century Gothic";
+    font-size: 15px;
+}
+/*************************** TEACHER PANEL PAGE STYLE END *********************************/
+@media only screen and (max-width: 991px) {
+    #header .navbar-trans{
+        background: none;
+        text-align: center;
+    }
+
+    #teacher-panel-header nav{
+        text-align: center;
+    }
+
+    .center-panel{
+        border-left: 0px solid #96281B;
+        border-right: 0px solid #96281B;
+        border-top: 2px solid #96281B;
+        border-bottom: 2px solid #96281B;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 548px) {
+    #teacher-panel-header .p-brand{
+        visibility: collapse;
+    }
+}
+
