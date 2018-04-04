@@ -44,7 +44,7 @@
         $updateContent = mysqli_real_escape_string($conn, $_POST['content']);
         $datetime = dateTimeFormat();
 
-        $insertUpdateQuery = "INSERT INTO tbl_updates(subjectid, datestamp, content) VALUES('$subjectidFromURL', '$datetime', '$updateContent')";
+        $insertUpdateQuery = "INSERT INTO tbl_updates(subjectid, datestamp, content, datetimestamp) VALUES('$subjectidFromURL', '$datetime', '$updateContent', NOW())";
 
         if(mysqli_query($conn, $insertUpdateQuery)){
             $_SESSION['successMessage'] = "Update successfully posted!";
@@ -59,25 +59,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NNHS</title>
+        <title>| NNHS</title>
 
-        <meta name="viewport" content="width=device-width" intial-scale="1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="img/nnhs-lms-logo.png">
+        <link rel="icon" href="../favicon.png">
 
-        <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
-        <link rel="stylesheet" href="../bootstrap/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link href="../fonts/webfonts/fontawesome-all.css" rel="stylesheet">
+        <link rel="stylesheet" href="../gijgo/css/gijgo.min.css">
         <link rel="stylesheet" href="../css/style.css">
 
-        <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
-        <script src="../semantic/dist/semantic.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="../bootstrap/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="../jquery/dist/jquery.min.js"></script>
+        <script src="../jquery/dist/jquery.slim.min.js"></script>
+        <script src="../popper.js/dist/popper.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../gijgo/js/gijgo.min.js"></script>
     </head>
 <body>
     <section id="teacher-panel-header">
@@ -85,7 +82,7 @@
             <nav class="navbar navbar-expand-lg p-0 navigation sticky-top">
                 <div class="container">
                     <a href="teacher-panel.php" class="navbar-brand brand mt-3 mr-5">
-                        <img src="../img/nnhs-lms-logo.png" alt="" width="70px" class="mb-3">
+                        <img src="../img/brand-pic.png" alt="" width="100px" class="mb-3">
                     </a>
 
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -109,7 +106,7 @@
                                     Assignment
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Add Assignment</a>
+                                    <a class="dropdown-item" href="addassignment.php?id=<?php echo $subjectidFromURL; ?>">Add Assignment</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="../logout.php">Assignment History</a>
                                 </div>
@@ -171,59 +168,161 @@
                 $accesscode = $DataRows['accesscode'];
                 $datetime = $DataRows['datetime'];
             }
+			
+			
         ?>
         <div class="container">
         <?php echo errorMessage(); echo successMessage(); ?>
-            <div class="row mb-5">
+            <div class="row mb-3">
                 <div class="col">
                     <h1 class="subject-name-heading"><?php echo $subjectname; ?>&nbsp;&nbsp;<a href="" class="btn btn-primary btn-updates" data-toggle="modal" data-target="#post-update"><i class="far fa-sticky-note"></i>&nbsp;&nbsp;Post Updates</a></h1>
                 </div>
             </div>
+    </section>
 
+    <section id="dashboard-panel" class="mb-3">
+        <div class="container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="card card-table" style="padding-left:0px; padding-right:0px;">
-                        <div class="card-header card-table-header">
-                            <h1>Upcoming</h1>
-                        </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Due Date</th>
-                                                <th>Time</th>
-                                                <th>Type</th>
-                                            </tr>
-                                        </thead>
-                                            <tr>
-                                                <td>Quiz # 1</td>
-                                                <td>Friday, March 16, 2018</td>
-                                                <td>11:59 PM</td>
-                                                <td>Exam</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quiz # 1</td>
-                                                <td>Friday, March 16, 2018</td>
-                                                <td>11:59 PM</td>
-                                                <td>Exam</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quiz # 1</td>
-                                                <td>Friday, March 16, 2018</td>
-                                                <td>11:59 PM</td>
-                                                <td>Exam</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Quiz # 1</td>
-                                                <td>Friday, March 16, 2018</td>
-                                                <td>11:59 PM</td>
-                                                <td>Exam</td>
-                                            </tr>
-                                    </table>
-                                </div>
+                <div class="col-md-4">
+                    <a href="manage-blotter.php">
+                        <div class="card text-center mb-3 card-table" style="width: 100%;">
+                            <div class="card-header count-header-cont">
+                                <h5 class="card-title count-title">Enrolled student(s):</h5>
                             </div>
+                            <div class="card-body count-blotter">
+							<?php $retrieveCountStudents = "SELECT COUNT(*) AS studcount FROM tbl_enrollment WHERE accesscode = '$accesscode' ";
+								  $result = mysqli_query($conn, $retrieveCountStudents);
+								
+								while($DataRows = mysqli_fetch_assoc($result)){
+								$studcount = $DataRows['studcount'];
+							?>
+                                <p class="card-text count-lbl"><i class="far fa-user"></i>&nbsp;&nbsp;<?php echo htmlentities($studcount); ?></p>
+								<?php } ?>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="manage-blotter.php">
+                        <div class="card text-center mb-3 card-table" style="width: 100%;">
+                            <div class="card-header count-header-cont">
+                                <h5 class="card-title count-title">Exam(s):</h5>
+                            </div>
+                            <div class="card-body count-blotter">
+							<?php $retrieveCountExams = "SELECT COUNT(*) AS examcount FROM tbl_exam_session WHERE subjectid = '$subjectidFromURL'";
+								  $result = mysqli_query($conn, $retrieveCountExams);
+								
+								while($DataRows = mysqli_fetch_assoc($result)){
+								$examcount = $DataRows['examcount'];
+							?>
+                                <p class="card-text count-lbl"><i class="far fa-copy"></i>&nbsp;&nbsp;<?php echo htmlentities($examcount); ?></p>
+								<?php } ?>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
+                    <a href="manage-blotter.php">
+                        <div class="card text-center mb-3 card-table" style="width: 100%;">
+                            <div class="card-header count-header-cont">
+                                <h5 class="card-title count-title">Assignment(s):</h5>
+                            </div>
+                            <div class="card-body count-blotter">
+							<?php $retrieveCountAssigns = "SELECT COUNT(*) AS assigncount FROM tbl_assignment WHERE subjectid_assign = '$subjectidFromURL'";
+								  $result = mysqli_query($conn, $retrieveCountAssigns);
+								
+								while($DataRows = mysqli_fetch_assoc($result)){
+								$assigncount = $DataRows['assigncount'];
+							?>
+                                <p class="card-text count-lbl"><i class="far fa-folder"></i></i>&nbsp;&nbsp;<?php echo htmlentities($assigncount); ?></p>
+								<?php } ?>
+							</div>
+                        </div>
+                    </a>
+                </div>
+            </div> 
+        </div>
+    </section>
+
+    <section id="upcoming-events" class="mb-5">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-table" style="padding-left:0px; padding-right:0px;">
+                            <div class="card-header card-table-header">
+                                <h1>Upcoming Exam</h1>
+                            </div>
+                            <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Items</th>
+                                            <th>Date and Time</th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                        $retrieveUpcomingExams = "SELECT exam_title, no_of_items, time_limit, DATE_FORMAT(date_start,'%M %d, %Y') AS 'exam_date', TIME_FORMAT(date_start, '%h:%i %p') AS 'exam_time' FROM tbl_exam_session WHERE CAST(date_start AS DATETIME) > NOW() AND subjectid = '$subjectidFromURL' ORDER BY CAST(date_start AS DATETIME) ASC LIMIT 5";
+
+                                        $result = mysqli_query($conn, $retrieveUpcomingExams);
+
+                                        while($DataRows = mysqli_fetch_assoc($result)){
+                                            $exam_title = $DataRows['exam_title'];
+                                            $no_of_items = $DataRows['no_of_items'];
+                                            $time_limit = $DataRows['time_limit'];
+                                            $exam_date = $DataRows['exam_date'];
+                                            $exam_time = $DataRows['exam_time'];
+                                            $exam_date_time = $exam_date." ".$exam_time;
+                                        ?>
+                                        <tr>
+                                            <td><?php echo htmlentities($exam_title); ?></td>
+                                            <td><?php echo htmlentities($no_of_items); ?></td>
+                                            <td><?php echo htmlentities($exam_date_time); ?></td>
+                                        </tr>
+                                        <?php } ?>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card card-table" style="padding-left:0px; padding-right:0px;">
+                    <div class="card-header card-table-header">
+                        <h1>Upcoming Assignment</h1>
+                    </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date and Time</th>
+                                    </tr>
+                                </thead>
+                                <?php
+                                    $retrieveUpcomingExams = "SELECT assign_name, filename_assign, subjectid_assign, assign_id, assign_desc, DATE_FORMAT(deadline_assign,'%M %d, %Y') AS 'deadline_date', TIME_FORMAT(deadline_assign, '%h:%i %p') AS 'deadline_time' FROM tbl_assignment WHERE CAST(deadline_assign AS DATETIME) > NOW() AND subjectid_assign = '$subjectidFromURL' ORDER BY CAST(deadline_assign AS DATETIME) ASC LIMIT 5";
+
+                                    $result = mysqli_query($conn, $retrieveUpcomingExams);
+
+                                    while($DataRows = mysqli_fetch_assoc($result)){
+                                        $assignment_name = $DataRows['assign_name'];
+                                        $deadline_date = $DataRows['deadline_date'];
+                                        $deadline_time = $DataRows['deadline_time'];
+                                        $deadline_date_time = $deadline_date." ".$deadline_time;
+                                    ?>
+                                    <tr>
+                                        <td><?php echo htmlentities($assignment_name); ?></td>
+                                        <td><?php echo htmlentities($deadline_date_time); ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                        </table>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,8 +367,8 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center my-3">
-                    <img src="../img/nnhs-lms-logo.png" alt="nnhs-logo" class="img-fluid" width="50px">
-                    <p class="cdate" style="font-size: 15px; display:inline-block;">&copy; 2018</p>
+                <img src="../img/brand-pic.png" alt="nnhs-logo" class="img-fluid" width="80px">
+                <p class="cdate" style="font-size: 15px; display:inline-block;">&copy; <?php echo date('Y');?></p>
                 </div>
             </div>
         </div>

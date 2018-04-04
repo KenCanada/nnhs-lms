@@ -37,28 +37,23 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>NNHS</title>
+  <head>
+    <title>| NNHS</title>
 
-    <meta name="viewport" content="width=device-width" intial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="icon" href="img/nnhs-lms-logo.png">
-    
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
-    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" href="favicon.png">
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="fonts/webfonts/fontawesome-all.css" rel="stylesheet">
+    <link rel="stylesheet" href="gijgo/css/gijgo.min.css">
     <link rel="stylesheet" href="css/style.css">
-
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="bootstrap/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="jquery/dist/jquery.slim.min.js"></script>
+    <script src="popper.js/dist/popper.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="gijgo/js/gijgo.min.js"></script>
+  </head>
 
 <body id="login-body">
     <div class="container">

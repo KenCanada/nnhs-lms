@@ -58,25 +58,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>NNHS</title>
+        <title>| NNHS</title>
 
-        <meta name="viewport" content="width=device-width" intial-scale="1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="icon" href="../img/nnhs-lms-logo.png">
+        <link rel="icon" href="../favicon.png">
 
-        <link rel="stylesheet" type="text/css" href="../semantic/dist/semantic.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
         <link href="../fonts/webfonts/fontawesome-all.css" rel="stylesheet">
+        <link rel="stylesheet" href="../gijgo/css/gijgo.min.css">
         <link rel="stylesheet" href="../css/style.css">
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script
-          src="https://code.jquery.com/jquery-3.1.1.min.js"
-          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-          crossorigin="anonymous"></script>
-        <script src="../semantic/dist/semantic.min.js"></script>
+        <script src="../jquery/dist/jquery.min.js"></script>
+        <script src="../jquery/dist/jquery.slim.min.js"></script>
+        <script src="../popper.js/dist/popper.min.js"></script>
+        <script src="../bootstrap/js/bootstrap.min.js"></script>
+        <script src="../gijgo/js/gijgo.min.js"></script>
     </head>
 <body>
     <section id="teacher-panel-header">
@@ -84,7 +81,7 @@
             <nav class="navbar navbar-expand-lg p-0 navigation sticky-top">
                 <div class="container">
                     <a href="teacher-panel.php" class="navbar-brand brand mt-3 mr-5">
-                        <img src="../img/nnhs-lms-logo.png" alt="" width="70px" class="mb-3">
+                        <img src="../img/brand-pic.png" alt="" width="100px" class="mb-3">
                     </a>
 
                     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -108,7 +105,7 @@
                                     Assignment
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Add Assignment</a>
+                                    <a class="dropdown-item" href="addassignment.php?id=<?php echo $subjectidFromURL; ?>">Add Assignment</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="../logout.php">Assignment History</a>
                                 </div>
@@ -174,8 +171,7 @@
                                     <thead>
                                         <tr>
                                             <th>Title</th>
-                                            <th>Date Start</th>
-                                            <th>Date End</th>
+                                            <th>Date and Time</th>
                                             <th>Time Limit</th>
                                             <th>Items</th>
                                             <th></th>
@@ -185,13 +181,12 @@
                                         $retrieveExamSession = "SELECT *
                                                                 FROM tbl_exam_session
                                                                 WHERE subjectid = '$subjectidFromURL' AND archive_exam = 0
-                                                                ORDER BY date_start ASC";
+                                                                ORDER BY datetimestamp ASC";
 
                                         $resultExamSession = mysqli_query($conn, $retrieveExamSession);
 
                                         while($DataRows = mysqli_fetch_assoc($resultExamSession)){
                                             $dateStart = $DataRows['date_start'];
-                                            $dateEnd = $DataRows['date_end'];
                                             $timeLimit = $DataRows['time_limit'];
                                             $exam_session_id = $DataRows['exam_session_id'];
                                             $examTitle = $DataRows['exam_title'];
@@ -207,7 +202,6 @@
                                         <tr>
                                             <td><?php echo htmlentities($newExamtitle); ?></td>
                                             <td><?php echo htmlentities($dateStart); ?></td>
-                                            <td><?php echo htmlentities($dateEnd); ?></td>
                                             <td><?php echo htmlentities($timeLimit); ?></td>
                                             <td><?php echo htmlentities($noOfItems); ?></td>
                                             <td class="text-right"><a href="view-exam.php?id=<?php echo $subjectidFromURL ?>&amp;eID=<?php echo $exam_session_id; ?>" class="btn btn-primary mr-3" style="width:40px;" target="_blank" data-toggle="tooltip" data-placement="top" title="VIEW"><i class="fas fa-external-link-alt"></i></a><a href="" class="btn btn-warning mr-3" style="width:40px;"><i class="far fa-edit"></i></a><a href="exam-manage.php?id=<?php echo $subjectidFromURL; ?>&amp;lld=<?php echo $exam_session_id?>" class="btn btn-danger mr-3" style="width:40px;"><i class="far fa-trash-alt"></i></a></td>
@@ -226,8 +220,8 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center my-3">
-                    <img src="../img/nnhs-lms-logo.png" alt="nnhs-logo" class="img-fluid" width="50px">
-                    <p class="cdate" style="font-size: 15px; display:inline-block;">&copy; 2018</p>
+                <img src="../img/brand-pic.png" alt="nnhs-logo" class="img-fluid" width="80px">
+                <p class="cdate" style="font-size: 15px; display:inline-block;">&copy; <?php echo date('Y');?></p>
                 </div>
             </div>
         </div>

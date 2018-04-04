@@ -3,6 +3,22 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300');
 
+@font-face{
+    font-family: Chalk;
+    src: url(../fonts/Chalk.ttf);
+}
+
+@font-face {
+    font-family: Raleway;
+    src: url(../fonts/Raleway-Regular.ttf);
+}
+
+@font-face {
+    font-family: Roboto Condensed;
+    src: url(../fonts/RobotoCondensed-Light.ttf);
+}
+
+
 body{
     background-color: #F5F5F5;
 }
@@ -11,7 +27,7 @@ body{
     margin-top: -50px;
 }
 
-.btn-outline-secondary{
+/* .btn-outline-secondary{
     color: #96281B;
     width: 170px;
     height: 60px;
@@ -19,7 +35,7 @@ body{
     font-size: 35px;
     border: 2px solid #96281B;
     padding: 0px;
-}
+} */
 
 .btn-submit{
     background-color: #C0392B;
@@ -61,11 +77,11 @@ body{
     border: 2px solid #96281B;
 }
 
-.btn-outline-secondary:hover{
+/* .btn-outline-secondary:hover{
     background-color: #C0392B;
     border: 2px solid #C0392B;
     color: white;
-}
+} */
 
 .top-arr{
     position: fixed;
@@ -119,8 +135,52 @@ body{
     border-radius: 10px;
     color: rgba(0,0,0, 0.87);
     background-color: #fff;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.card-table-collapse{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.14);
+    color: rgba(0,0,0, 0.87);
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+#announcement-section .btn-collapse{
+    color: #C0392B;
+    padding: 8px;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+#announcement-section .btn-collapse:hover{
+    color: white;
+}
+
+#announcement-section .announcement-content{
+    font-family: 'Raleway';
+    font-size: 20px;
+}
+
+.card-footer-collapse{
+    padding: 2px;
+}
+
+#announcement-section .announcement-date{
+    font-family: 'Century Gothic';
+    font-size: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#upcoming-events th{
+    font-size: 15px;
 }
 
 thead{
@@ -144,6 +204,46 @@ tbody{
     font-size: 25px;
 
 }
+
+#dashboard-panel a{
+    text-decoration: none;
+}
+
+
+
+#dashboard-panel .count-header-cont{
+    background-color: #C0392B;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    text-align: left;
+    font-family: 'Raleway';
+    color: white;
+    /* border: #000 2px solid; */
+                  
+}
+
+#dashboard-panel .count-blotter{
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    color: black;
+    background-color: transparent;
+    padding-top: 2px;
+    text-align: left;
+    border: #000 2px solid;
+}
+
+#dashboard-panel .count-blotter:hover{
+    background-color: #e4e4e4;
+    transition: .5s;
+}
+
+#dashboard .count-blotter i{
+    text-align: left;
+    font-size: 10px;
+    color: red;
+}
+
+
 
 /*************************** LOGIN PAGE STYLE *********************************/
 
@@ -319,7 +419,7 @@ tbody{
 }
 
 #header .inner-heading{
-    font-family: 'Century Gothic';
+    font-family: 'Chalk';
     font-size: 60px;
     text-shadow: -1px -1px 0 #fff,
 		          1px -1px 0 #fff,
@@ -568,6 +668,12 @@ tbody{
     font-family: "Century Gothic";
     font-size: 15px;
 }
+
+/* .btn-outline-secondary{
+    color: #96281B;
+    
+    
+} */
 /*************************** TEACHER PANEL PAGE STYLE END *********************************/
 @media only screen and (max-width: 991px) {
     #header .navbar-trans{
@@ -576,7 +682,12 @@ tbody{
     }
 
     #teacher-panel-header nav{
-        text-align: center;
+        text-align: left;
+        padding: 10px;
+    }
+
+    #teacher-panel-header li{
+        padding-left: 5px;
     }
 
     .center-panel{
@@ -591,6 +702,15 @@ tbody{
 @media only screen and (max-width: 548px) {
     #teacher-panel-header .p-brand{
         visibility: collapse;
+    }
+
+    #teacher-panel-header nav{
+        text-align: left;
+        padding: 10px;
+    }
+
+    #teacher-panel-header li{
+        padding-left: 10px;
     }
 }
 
